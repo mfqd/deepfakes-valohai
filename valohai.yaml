@@ -1,0 +1,54 @@
+- step:
+    name: Setup
+    image: tensorflow/tensorflow:1.5.0-devel-gpu
+    command: python setup.py
+  
+
+
+- step:
+    name: Get trump image
+    image: tensorflow/tensorflow:1.5.0-devel-gpu
+    command: ffmpeg -i https://r5---sn-5ualdn7s.googlevideo.com/videoplayback?id=o-ADBpp5Uh_EEUvZpZ_gM4Fxn5YrgmXMQUwgpA2L_NJ4VK&expire=1555994554&c=WEB&mt=1555972898&mime=video%2Fmp4&signature=A562BC5679673B373A9BB0C358427660D4AE76B2.308CBBC91D4A8CB5390EC51DBB24EF11D2FD7355&pl=51&ipbits=0&requiressl=yes&fvip=5&ei=WkO-XLa2Ao3ihwawx47oDg&key=yt6&sparams=dur%2Cei%2Cid%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Clmt%2Cmime%2Cmm%2Cmn%2Cms%2Cmv%2Cpl%2Cratebypass%2Crequiressl%2Csource%2Cexpire&lmt=1554168220174334&itag=22&ms=au%2Crdu&source=youtube&ratebypass=yes&mv=m&dur=571.791&mm=31%2C29&mn=sn-5ualdn7s%2Csn-5uaeznyz&initcwndbps=447500&ip=2600%3A3c02%3A%3Af03c%3A91ff%3Afe40%3A40&txp=5535432&title=Trump%27s+full+speech+from+Oval+Office+on+shutdown+and+border+wall+(Full+national+address) images/trump/trump-frame-%d.png
+
+
+- step:
+    name: Get cardib image
+    image: tensorflow/tensorflow:1.5.0-devel-gpu
+    command: ffmpeg -i https://r4---sn-n4v7knls.googlevideo.com/videoplayback?id=o-AGRlHy3H62TTYSA0Aql0aYopyjya6Zh6Ic62mZ002C3B&itag=18&source=youtube&requiressl=yes&mm=31%2C26&mn=sn-n4v7knls%2Csn-a5meknle&ms=au%2Conr&mv=m&pl=23&ei=ZkS-XMejBoPJkgaD4ZDgDg&initcwndbps=155000&mime=video%2Fmp4&gir=yes&clen=12816922&ratebypass=yes&dur=164.397&lmt=1537271430988350&mt=1555973143&fvip=4&c=WEB&ip=142.93.18.247&ipbits=0&expire=1555994822&sparams=ip%2Cipbits%2Cexpire%2Cid%2Citag%2Csource%2Crequiressl%2Cmm%2Cmn%2Cms%2Cmv%2Cpl%2Cei%2Cinitcwndbps%2Cmime%2Cgir%2Cclen%2Cratebypass%2Cdur%2Clmt&key=yt8&signature=BFB082627FFB1AF3E3561F7C4306BFCD308C1CB2.48D08E6BC98BB68F31629C1778807A8007C7D430&title=Cardi+B+%22Red+Barz%22+(WSHH+Exclusive+-+Official+Music+Video) images/cardib/cardib-frame-%d.png
+
+
+
+- step:
+    name: Extract trump
+    image: tensorflow/tensorflow:1.5.0-devel-gpu
+    command: python faceswap.py extract -i images/trump -o data/trump
+
+
+- step:
+    name: Extract cardib
+    image: tensorflow/tensorflow:1.5.0-devel-gpu
+    command: python faceswap.py extract -i images/cardib -o data/cardib
+    
+
+- step: 
+    name: Train model
+    image: tensorflow/tensorflow:1.5.0-devel-gpu
+    command: python faceswap.py train -A data/trump -B data/cardib -m models/
+
+
+- step: 
+    name: faceswap.py
+    image: tensorflow/tensorflow:1.5.0-devel-gpu
+    command: python faceswap.py convert -i images/trump/ -o output/ -m models/
+
+
+- step:
+    name: Worker environment check
+    image: tensorflow/tensorflow:1.5.0-devel-gpu
+    command:
+      - pwd
+      - ls -la
+      - nvidia-smi
+      - python --version
+      - nvcc --version | grep release
+      - cat /usr/include/x86_64-linux-gnu/cudnn_v*.h | grep CUDNN_MAJOR -A 2
