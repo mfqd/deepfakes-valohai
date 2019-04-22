@@ -1,4 +1,4 @@
-**Notice:** This repository is not operated or maintained by /u/deepfakes. Please read the explanation below for details.
+**Notice:** This repository is just a copy from https://github.com/deepfakes/faceswap with Valohai compatibility
 # deepfakes_faceswap
 
 Faceswap is a tool that utilizes deep learning to recognize and swap faces in pictures and videos.
