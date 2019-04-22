@@ -4,6 +4,10 @@
     command: python setup.py
   
 
+- step:
+    name: Setup (avant ? )
+    image: tensorflow/tensorflow:1.5.0-devel-gpu
+    command: pip install -r requirements.txt
 
 - step:
     name: Get trump image
