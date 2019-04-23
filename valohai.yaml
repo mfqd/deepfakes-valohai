@@ -12,7 +12,7 @@
 - step:
     name: Get trump image
     image: tensorflow/tensorflow:1.5.0-devel-gpu
-    command: ffmpeg -i https://r5---sn-5ualdn7s.googlevideo.com/videoplayback?id=o-ADBpp5Uh_EEUvZpZ_gM4Fxn5YrgmXMQUwgpA2L_NJ4VK&expire=1555994554&c=WEB&mt=1555972898&mime=video%2Fmp4&signature=A562BC5679673B373A9BB0C358427660D4AE76B2.308CBBC91D4A8CB5390EC51DBB24EF11D2FD7355&pl=51&ipbits=0&requiressl=yes&fvip=5&ei=WkO-XLa2Ao3ihwawx47oDg&key=yt6&sparams=dur%2Cei%2Cid%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Clmt%2Cmime%2Cmm%2Cmn%2Cms%2Cmv%2Cpl%2Cratebypass%2Crequiressl%2Csource%2Cexpire&lmt=1554168220174334&itag=22&ms=au%2Crdu&source=youtube&ratebypass=yes&mv=m&dur=571.791&mm=31%2C29&mn=sn-5ualdn7s%2Csn-5uaeznyz&initcwndbps=447500&ip=2600%3A3c02%3A%3Af03c%3A91ff%3Afe40%3A40&txp=5535432&title=Trump%27s+full+speech+from+Oval+Office+on+shutdown+and+border+wall+(Full+national+address) images/trump/trump-frame-%d.png
+    command: ffmpeg -i Trump\'s\ full\ speech\ from\ Oval\ Office\ on\ shutdown\ and\ border\ wall\ \(Full\ national\ address\).mp4 images/trump/trump-frame-%d.png
 
 
 - step:
