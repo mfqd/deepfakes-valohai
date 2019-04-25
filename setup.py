@@ -575,9 +575,9 @@ class Install():
                          "        'python faceswap.py gui' to launch the GUI")
 
     def ask_continue(self):
-    """ Ask Continue with Install """
+        """ Ask Continue with Install """
         inp = "Y"
-    #input("Please ensure your System Dependencies are met. Continue? [y/N] ")
+        #input("Please ensure your System Dependencies are met. Continue? [y/N] ")
         if inp in ("", "N", "n"):
            self.output.error("Please install system dependencies to continue")
            exit(1)
