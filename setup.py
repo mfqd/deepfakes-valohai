@@ -339,14 +339,14 @@ class Checks():
             self.tips.pip()
 
     def docker_ask_enable(self):
-        """ Enable or disable Docker """
-        i = input("Enable  Docker? [y/N] ")
-        if i in ("Y", "y"):
-            self.output.info("Docker Enabled")
-            self.env.enable_docker = True
-        else:
-            self.output.info("Docker Disabled")
-            self.env.enable_docker = False
+    #""" Enable or disable Docker """
+        #i = input("Enable  Docker? [y/N] ")
+        #if i in ("Y", "y"):
+        #self.output.info("Docker Enabled")
+        #self.env.enable_docker = True
+        #else:
+        self.output.info("Docker Disabled")
+        self.env.enable_docker = False
 
     def docker_confirm(self):
         """ Warn if nvidia-docker on non-linux system """
@@ -576,11 +576,11 @@ class Install():
                          "        'python faceswap.py gui' to launch the GUI")
 
     def ask_continue(self):
-        """ Ask Continue with Install """
-        inp = input("Please ensure your System Dependencies are met. Continue? [y/N] ")
-        if inp in ("", "N", "n"):
-            self.output.error("Please install system dependencies to continue")
-            exit(1)
+    #""" Ask Continue with Install """
+        #inp = input("Please ensure your System Dependencies are met. Continue? [y/N] ")
+        #if inp in ("", "N", "n"):
+        #   self.output.error("Please install system dependencies to continue")
+        #   exit(1)
 
     def check_missing_dep(self):
         """ Check for missing dependencies """
