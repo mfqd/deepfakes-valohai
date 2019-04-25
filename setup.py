@@ -237,8 +237,7 @@ class Environment():
             "https://www.tensorflow.org/install/source#tested_build_configurations".format(
                 self.cuda_version, self.cudnn_version))
 
-        custom_tf = input("Location of custom tensorflow-gpu wheel (leave "
-                          "blank to manually install): ")
+        custom_tf = True
         if not custom_tf:
             return
 
@@ -331,7 +330,7 @@ class Checks():
         elif self.env.enable_cuda and self.env.os_version[0] not in ("Linux", "Windows"):
             self.tips.macos()
             self.output.warning("Cannot find CUDA on macOS")
-            self.env.cuda_version = input("Manually specify CUDA version: ")
+            self.env.cuda_version = "CUDA Version 8.0.61"
 
         self.env.update_tf_dep()
         self.check_system_dependencies()
@@ -339,14 +338,14 @@ class Checks():
             self.tips.pip()
 
     def docker_ask_enable(self):
-    #""" Enable or disable Docker """
-        #i = input("Enable  Docker? [y/N] ")
-        #if i in ("Y", "y"):
-        #self.output.info("Docker Enabled")
-        #self.env.enable_docker = True
-        #else:
-        self.output.info("Docker Disabled")
-        self.env.enable_docker = False
+        """ Enable or disable Docker """
+            i = "Y"
+        if i in ("Y", "y"):
+            self.output.info("Docker Enabled")
+            self.env.enable_docker = True
+        else:
+            self.output.info("Docker Disabled")
+            self.env.enable_docker = False
 
     def docker_confirm(self):
         """ Warn if nvidia-docker on non-linux system """
@@ -366,7 +365,7 @@ class Checks():
 
     def cuda_ask_enable(self):
         """ Enable or disable CUDA """
-        i = input("Enable  CUDA? [Y/n] ")
+        i = "Y"
         if i in ("", "Y", "y"):
             self.output.info("CUDA Enabled")
             self.env.enable_cuda = True
@@ -576,11 +575,12 @@ class Install():
                          "        'python faceswap.py gui' to launch the GUI")
 
     def ask_continue(self):
-    #""" Ask Continue with Install """
-        #inp = input("Please ensure your System Dependencies are met. Continue? [y/N] ")
-        #if inp in ("", "N", "n"):
-        #   self.output.error("Please install system dependencies to continue")
-        #   exit(1)
+    """ Ask Continue with Install """
+        inp = "Y"
+    #input("Please ensure your System Dependencies are met. Continue? [y/N] ")
+        if inp in ("", "N", "n"):
+           self.output.error("Please install system dependencies to continue")
+           exit(1)
         print("ok")
 
     def check_missing_dep(self):
