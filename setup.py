@@ -339,7 +339,7 @@ class Checks():
 
     def docker_ask_enable(self):
         """ Enable or disable Docker """
-            i = "Y"
+        i = "Y"
         if i in ("Y", "y"):
             self.output.info("Docker Enabled")
             self.env.enable_docker = True
