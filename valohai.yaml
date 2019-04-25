@@ -13,6 +13,9 @@
     name: Get trump image
     image: tensorflow/tensorflow:1.5.0-devel-gpu
     command: xargs -n 1 curl -O < rawdata/trump/files.txt  
+    outputs: 
+        - name: trump
+        - default: /data/trump
 
 
 - step:
