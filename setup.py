@@ -581,6 +581,7 @@ class Install():
         #if inp in ("", "N", "n"):
         #   self.output.error("Please install system dependencies to continue")
         #   exit(1)
+        print("ok")
 
     def check_missing_dep(self):
         """ Check for missing dependencies """
