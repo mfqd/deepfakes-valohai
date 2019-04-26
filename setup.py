@@ -28,7 +28,7 @@ class Environment():
         self.cuda_path = ""
         self.cuda_version = ""
         self.cudnn_version = ""
-        self.enable_docker = False
+        self.enable_docker = True
         self.enable_cuda = False
         self.required_packages = self.get_required_packages()
         self.missing_packages = list()
